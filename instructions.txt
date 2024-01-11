@@ -1,0 +1,7 @@
+To run this project, execute this commands in the project root directory:
+
+1 - `docker compose build --no-cache`
+2 - `docker compose up -d`
+
+To access the endpoint: `localhost:8080/apidocs`    
+To access the website: `localhost:3000` 

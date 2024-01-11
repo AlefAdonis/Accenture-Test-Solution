@@ -1,0 +1,42 @@
+version: '3'
+services:
+  frontend:
+    restart: always
+    build: "./frontend/accenture-security"
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - ./frontend/accenture-security:/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+  api:
+    container_name: accenture-security-api
+    restart: always
+    build: "./app"
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_URL=postgresql://postgres:postgres@database:5432/postgres
+      - LOG_PATH=Logs/
+    volumes:
+      - ./app:/app
+    depends_on:
+      - database
+
+  database:
+    container_name: database
+    image: postgres:12
+    ports:
+      - 5432:5432  
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+
+volumes:
+  pgdata:  {}

@@ -1,0 +1,8 @@
+flask
+psycopg2-binary
+Flask-SQLAlchemy
+uuid
+SQLAlchemy
+flask_cors
+flasgger
+setuptools
